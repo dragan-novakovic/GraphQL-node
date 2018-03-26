@@ -14,9 +14,9 @@ var books = [
   { name: "The Long Earth", genre: "Sci-Fi", id: "3" }
 ];
 var authors = [
-  { name: "Name of the Wind1", age: 1, id: "1" },
-  { name: "The Final Empire2", age: 2, id: "2" },
-  { name: "The Long Earth3", age: 3, id: "3" }
+  { name: "autor1", age: 1, id: "1" },
+  { name: "autor2", age: 2, id: "2" },
+  { name: "autor3", age: 3, id: "3" }
 ];
 
 const BookType = new GraphQLObjectType({
