@@ -2,6 +2,7 @@
   "dependencies": {
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.5",
+    "mongoose": "^5.0.12"
   }
 }

@@ -1,7 +1,15 @@
+import { mongo } from "mongoose";
+
 const express = require("express");
 const graphqlHTTP = require("express-graphql");
 const schema = require("./schema/schema");
+const mongoose = require("mongoose");
 const app = express();
+
+const URL = "mongodb://Ja:ja@ds227939.mlab.com:27939/graphql-db";
+
+mongoose.connect(URL);
+mongoose.connection.once("open", () => console.log("Connected to DB"));
 
 // apollo
 // 25.03.2018
