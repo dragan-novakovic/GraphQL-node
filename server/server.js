@@ -1,5 +1,4 @@
 const express = require("express");
-const graphqlHTTP = require("express-graphql");
 const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
 const { schema } = require("./schema/schema");
 const mongoose = require("mongoose");
@@ -17,6 +16,5 @@ mongoose.connection.once("open", () => console.log("Connected to DB"));
 
 app.use("/graphql", bodyParser.json(), graphqlExpress({ schema }));
 app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
-//app.use("/graphql", graphqlHTTP({ schema, graphiql: true }));
 
 app.listen("3333", () => console.log("Started Server on Port 3333 !!!!!"));
