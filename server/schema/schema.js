@@ -1,46 +1,45 @@
-const graphql = require("graphql");
-const { makeExecutableSchema } = require('graphql-tools');
+const { makeExecutableSchema } = require("graphql-tools");
 const Book = require("../models/book");
 const Author = require("../models/Author");
 
-const {
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLSchema,
-  GraphQLID,
-  GraphQLInt,
-  GraphQLList,
-  GraphQLNonNull
-} = graphql;
-
-// Some fake data
-const books = [
-  {
-    title: "Harry Potter and the Sorcerer's stone",
-    author: 'J.K. Rowling',
-  },
-  {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton',
-  },
-];
-
-// The GraphQL schema in string form
 const typeDefs = `
-  type Query { books: [Book] }
-  type Book { title: String, author: String }
+type Book {
+    id: ID
+    name: String
+    genre: String
+    author: Author
+   }
+  type Author {
+     id: ID
+     name: String
+     age: Int
+     books:[Book]
+   }
+  type Query {
+    book(id: ID!): Book
+    author(id: ID!): Author
+    books:[Book]
+    authors:[Author]
+   }
 `;
 
-// The resolvers
 const resolvers = {
-  Query: { books: () => books },
+  Query: {
+    book: (parent, args) => Book.findById(args.id),
+    author: (parent, args) => Author.findById(args.id),
+    books: () => Book.find({}),
+    authors: () => Author.find({})
+  }
 };
 
-// Put together a schema
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-});
+module.exports = {
+  schema: makeExecutableSchema({
+    typeDefs,
+    resolvers
+  })
+};
+
+/*
 
 const BookType = new GraphQLObjectType({
   name: "Book",
@@ -70,38 +69,6 @@ const AuthorType = new GraphQLObjectType({
       }
     }
   })
-});
-
-const RootQuery = new GraphQLObjectType({
-  name: "RootQueryType",
-  fields: {
-    book: {
-      type: BookType,
-      args: { id: { type: GraphQLID } },
-      resolve(parent, args) {
-        return Book.findById(args.id);
-      }
-    },
-    author: {
-      type: AuthorType,
-      args: { id: { type: GraphQLID } },
-      resolve(parent, args) {
-        return Author.findById(args.id);
-      }
-    },
-    books: {
-      type: new GraphQLList(BookType),
-      resolve(parent, args) {
-        return Book.find({});
-      }
-    },
-    authors: {
-      type: new GraphQLList(AuthorType),
-      resolve(parent, args) {
-        return Author.find({});
-      }
-    }
-  }
 });
 
 const Mutation = new GraphQLObjectType({
@@ -140,7 +107,4 @@ const Mutation = new GraphQLObjectType({
   }
 });
 
-module.exports = new GraphQLSchema({
-  query: RootQuery,
-  mutation: Mutation
-});
+*/
