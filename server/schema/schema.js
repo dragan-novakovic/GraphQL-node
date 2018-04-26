@@ -1,7 +1,5 @@
 const { makeExecutableSchema } = require("graphql-tools");
-const Book = require("../models/book");
-const Author = require("../models/Author");
-import resolvers from "./resolvers";
+const { resolvers } = require("./resolvers");
 
 const typeDefs = `
 type Book {
