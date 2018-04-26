@@ -42,16 +42,11 @@ class AddBook extends Component {
     return (
       <Mutation
         mutation={addBookMutation}
-        variables={{
-          name: this.state.name,
-          genre: this.state.genre,
-          authorId: this.state.authorId
-        }}
         refetchQueries={[{ query: getBooksQuery }]}
         onError={err => console.log(err)}
       >
         {addBook => (
-          <form id="add-book" onSubmit={this.submitForm(addBook)}>
+          <form id="add-book" onSubmit={e => this.submitForm(e, addBook)}>
             <div className="field">
               <label>Book name:</label>
               <input
