@@ -1,4 +1,7 @@
 # GraphQL-node
- GraphQL with Node and React
+ Simple Book Trading Club (FreeCodeCamp Certifact Project)
 
-Simple Book Trading App
+## TODO:
+* Merge with NodeTS backend
+
+
