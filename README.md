@@ -3,5 +3,5 @@
 
 ## TODO:
 * Merge with NodeTS backend
-
+* Complete User-stories
 
