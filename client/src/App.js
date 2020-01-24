@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
+import React, { Component } from 'react';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
 
 // components
-import BookList from "./components/BookList";
-import AddBook from "./components/AddBook";
+import BookList from './components/BookList';
+import AddBook from './components/addBook';
 
 // apollo client setup
 const client = new ApolloClient({
-  uri: "http://localhost:3333/graphql"
+  uri: 'http://localhost:3333/graphql'
 });
 
 class App extends Component {
